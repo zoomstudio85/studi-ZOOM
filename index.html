@@ -21,18 +21,50 @@
         .merchant-login-btn:hover { background: var(--primary); color: #000; }
         .merchant-badge { background: var(--primary); color: black; padding: 5px 10px; border-radius: 20px; font-weight: bold; font-size: 0.8rem; display: none; }
 
-        /* Countdown */
-        #countdown-section { background: linear-gradient(45deg, #1e1e24, #2c3e50); color: white; padding: 20px; text-align: center; border-bottom: 4px solid var(--primary); display: none; }
+        /* === العداد التنازلي (محدث بالشخصيات) === */
+        #countdown-section { 
+            background: linear-gradient(45deg, #1e1e24, #2c3e50); 
+            color: white; 
+            padding: 30px 20px; 
+            text-align: center; 
+            border-bottom: 4px solid var(--primary); 
+            display: none; 
+            position: relative; 
+            overflow: hidden; 
+        }
         .timer-title { font-size: 1.1rem; margin-bottom: 10px; color: var(--primary); font-weight: bold; }
         .timer-container { display: flex; justify-content: center; gap: 15px; direction: ltr; }
         .time-box { background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px; min-width: 60px; border: 1px solid rgba(255,255,255,0.2); }
         .time-number { font-size: 1.5rem; font-weight: bold; display: block; line-height: 1; }
         .time-label { font-size: 0.7rem; opacity: 0.8; }
 
+        /* شخصيات رمضان */
+        .ramadan-char {
+            position: absolute;
+            bottom: 0;
+            width: 80px; 
+            height: auto;
+            z-index: 10;
+            pointer-events: none;
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3));
+        }
+        .char-right { right: 10px; animation: float 3s ease-in-out infinite; }
+        .char-left { left: 10px; animation: float 4s ease-in-out infinite reverse; }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @media (max-width: 400px) {
+            .ramadan-char { width: 60px; opacity: 0.8; }
+        }
+
         /* Hero */
         .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://drive.google.com/uc?export=view&id=1B2cCSl5YOENoYaWiURnxttB1QTJ9hFLb'); background-size: cover; color: white; text-align: center; padding: 4rem 1rem; border-radius: 0 0 30px 30px; margin-bottom: 20px; }
         
-        /* Search Bar (New) */
+        /* Search Bar */
         .search-container { position: relative; max-width: 600px; margin: -50px auto 20px auto; padding: 0 20px; z-index: 101; }
         .search-input { width: 100%; padding: 15px 45px 15px 20px; border-radius: 30px; border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1); font-family: 'Cairo'; font-size: 1rem; outline: none; }
         .search-icon { position: absolute; right: 35px; top: 50%; transform: translateY(-50%); color: var(--dark); }
@@ -50,7 +82,7 @@
         .card-body { padding: 12px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
         .card-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 5px; }
         
-        /* Gallery Section (New) */
+        /* Gallery Section */
         .gallery-section { margin-top: 40px; padding: 20px 0; background: #fff; text-align: center; }
         .gallery-title { font-size: 1.5rem; color: var(--dark); margin-bottom: 20px; font-weight: bold; position: relative; display: inline-block; }
         .gallery-title::after { content: ''; display: block; width: 50%; height: 3px; background: var(--primary); margin: 5px auto; }
@@ -59,12 +91,12 @@
         .gallery-item:hover { transform: scale(1.03); border-color: var(--primary); }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Lightbox (New) */
+        /* Lightbox */
         .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; justify-content: center; align-items: center; flex-direction: column; }
         .lightbox img { max-width: 90%; max-height: 80vh; border-radius: 5px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
         .lightbox-close { color: white; font-size: 2rem; position: absolute; top: 20px; right: 20px; cursor: pointer; }
 
-        /* Toast (New) */
+        /* Toast */
         .toast { visibility: hidden; min-width: 250px; background-color: #333; color: #fff; text-align: center; border-radius: 50px; padding: 16px; position: fixed; z-index: 4000; left: 50%; bottom: 30px; transform: translateX(-50%); font-size: 17px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); opacity: 0; transition: opacity 0.5s, bottom 0.5s; }
         .toast.show { visibility: visible; opacity: 1; bottom: 50px; }
         .toast.success { background-color: var(--success); }
@@ -87,7 +119,7 @@
 
         .whatsapp-float { position: fixed; bottom: 90px; right: 20px; background: #25d366; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; z-index: 1500; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
 
-        /* تنسيق الفوتر وزر الصعود */
+        /* Footer & Scroll Top */
         footer { background: #1e1e24; color: white; padding: 40px 20px; text-align: center; margin-top: 50px; border-top: 5px solid var(--primary); }
         .footer-logo { font-size: 1.5rem; color: var(--primary); margin-bottom: 15px; font-weight: bold; }
         .footer-info { margin-bottom: 20px; line-height: 1.8; color: #ccc; }
@@ -96,7 +128,6 @@
         .social-btn { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s; font-size: 1.2rem; }
         .social-btn:hover { background: var(--primary); color: #000; transform: translateY(-3px); }
         
-        /* زر الصعود للأعلى */
         #scrollTopBtn { display: none; position: fixed; bottom: 90px; left: 20px; background: var(--primary); color: var(--dark); border: none; width: 45px; height: 45px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 1400; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s; }
         #scrollTopBtn:hover { transform: scale(1.1); background: white; }
     </style>
@@ -117,6 +148,9 @@
 </header>
 
 <div id="countdown-section">
+    <img src="https://media.tenor.com/On7j8vU9F48AAAAi/ramadan-kareem-ramadan.gif" class="ramadan-char char-right" alt="شخصية رمضان">
+    <img src="https://media.tenor.com/2s9V9YtCqQIAAAAi/fananees-ramadan.gif" class="ramadan-char char-left" alt="فوانيس رمضان">
+
     <div class="timer-title" id="timer-title-display">🔥 عرض خاص ينتهي بعد:</div>
     <div class="timer-container">
         <div class="time-box"><span class="time-number" id="days">00</span><span class="time-label">يوم</span></div>
@@ -234,7 +268,7 @@
 
 <script>
     // ****************************
-    // ⚠️⚠️ ضع رابط السكربت الخاص بك هنا 
+    // رابط السكربت الخاص بك (تم تحديثه)
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyR8ZkyEJhld0q7-VJB1DYz7tkAWytf24pm8C8BBT1Qq5Hwk6-jq6AgO4G4tL9kLL8/exec";
     // ****************************
 
@@ -243,11 +277,7 @@
     const timerTitleText = "🌙 باقي على شهر رمضان الكريم:"; 
     const isTimerActive = true; 
 
-    // كوبونات الخصم (اسم الكود : نسبة الخصم)
-    const PROMO_CODES = {
-        'ZOOM10': 0.10, // خصم 10%
-        'VIP20': 0.20   // خصم 20%
-    };
+    const PROMO_CODES = { 'ZOOM10': 0.10, 'VIP20': 0.20 };
 
     const categoryImages = {
         'all': 'https://drive.google.com/uc?export=view&id=1B2cCSl5YOENoYaWiURnxttB1QTJ9hFLb',
@@ -259,11 +289,10 @@
     };
 
     let allProducts = [], authorizedClients = [], cart = [], currentLang = 'ar', currentUser = null;
-    let activeDiscount = 0; // قيمة الخصم الحالية
+    let activeDiscount = 0; 
 
     const translations = { ar: { add: "أضف للسلة", wait: "حجز (انتظار)", stock: "متبقي" }, en: { add: "Add to Cart", wait: "Waitlist Request", stock: "Left" } };
 
-    // --- Start Logic ---
     function startTimer() {
         if (!isTimerActive) return;
         document.getElementById('timer-title-display').innerText = timerTitleText;
@@ -291,11 +320,8 @@
             const data = await res.json();
             allProducts = data.products || []; 
             authorizedClients = data.clients || [];
-            
-            // فصل المنتجات عن صور المعرض
             const shopProducts = allProducts.filter(p => p.category !== 'gallery');
             const galleryItems = allProducts.filter(p => p.category === 'gallery');
-
             renderProducts(shopProducts);
             renderGallery(galleryItems);
             checkLocalStorage();
@@ -311,12 +337,10 @@
     function renderProducts(list) {
         const container = document.getElementById('productContainer');
         container.innerHTML = '';
-        
         if (!list || list.length === 0) {
             container.innerHTML = '<p style="text-align:center; width:100%; padding:20px;">لا توجد منتجات مطابقة</p>';
             return;
         }
-
         list.forEach(p => {
             let stockVal = 999;
             if (p.stock !== undefined && p.stock !== "" && p.stock !== null) { stockVal = parseInt(p.stock); }
@@ -324,11 +348,9 @@
             const btnText = isWaitlist ? translations[currentLang].wait : translations[currentLang].add;
             const btnClass = isWaitlist ? 'add-btn waitlist-btn' : 'add-btn';
             const detailsText = p.details ? `<p style="font-size:0.8rem; color:#777; margin:5px 0;">${p.details}</p>` : '';
-
             let badge = '';
             if (isWaitlist) badge = `<div class="waitlist-badge">⏳ قائمة انتظار</div>`;
             else if (stockVal < 999) badge = `<div class="stock-badge">${translations[currentLang].stock}: ${stockVal}</div>`;
-
             container.innerHTML += `
                 <div class="card">
                     ${badge}
@@ -350,7 +372,6 @@
     function renderGallery(items) {
         const gallerySection = document.getElementById('gallerySection');
         const galleryGrid = document.getElementById('galleryGrid');
-        
         if (items.length > 0) {
             gallerySection.style.display = 'block';
             galleryGrid.innerHTML = '';
@@ -358,8 +379,7 @@
                 galleryGrid.innerHTML += `
                     <div class="gallery-item">
                         <img src="${processImage(item.image)}" loading="lazy" onclick="openLightbox(this.src)">
-                    </div>
-                `;
+                    </div>`;
             });
         } else {
             gallerySection.style.display = 'none';
@@ -368,19 +388,15 @@
 
     function searchProducts() {
         const query = document.getElementById('searchInput').value.toLowerCase();
-        // البحث فقط في المنتجات العادية (ليس المعرض)
         const shopProducts = allProducts.filter(p => p.category !== 'gallery');
         const filtered = shopProducts.filter(p => 
             p.name.toLowerCase().includes(query) || 
             (p.details && p.details.toLowerCase().includes(query))
         );
-        
-        // إذا كان هناك بحث، نتجاهل التابس مؤقتاً
         if(query.length > 0) {
             document.getElementById('productContainer').innerHTML = '';
             renderProducts(filtered);
         } else {
-            // لو مسح البحث، نرجع للتاب النشط (افتراضياً الكل)
             filterProducts('all', document.getElementById('tab-all'));
         }
     }
@@ -388,20 +404,16 @@
     function addToCart(id) {
         const p = allProducts.find(x => x.id == id);
         if(!p) return;
-
         let stock = 999;
         if (p.stock !== undefined && p.stock !== "" && p.stock !== null) { stock = parseInt(p.stock); }
         const isWaitlist = stock <= 0;
         const exist = cart.find(x => x.id == id);
-        
         if (!isWaitlist && exist && exist.qty + 1 > stock) {
             showToast("عذراً، لا يوجد مخزون كافٍ!", "error");
             return;
         }
-        
         if (exist) exist.qty++;
         else cart.push({...p, qty: 1, isWaitlist: isWaitlist});
-        
         updateCartUI();
         showToast(isWaitlist ? "تمت الإضافة لقائمة الانتظار ⏳" : "تمت الإضافة للسلة ✅", "success");
     }
@@ -411,26 +423,21 @@
         let subtotal = cart.reduce((a, b) => a + (b.price * b.qty), 0);
         let discountAmount = subtotal * activeDiscount;
         let finalTotal = subtotal - discountAmount;
-        
         document.getElementById('headerCartCount').innerText = totalQty;
-        
         const stickyBar = document.getElementById('stickyCartBar');
         if (totalQty > 0) {
             stickyBar.style.display = 'flex';
             document.getElementById('stickyCount').innerText = totalQty;
             document.getElementById('stickyTotal').innerText = finalTotal.toFixed(0) + ' ج.م';
         } else { stickyBar.style.display = 'none'; }
-        
         document.getElementById('cartSubtotal').innerText = subtotal;
         document.getElementById('cartTotal').innerText = finalTotal.toFixed(0);
-        
         if (activeDiscount > 0) {
             document.getElementById('discountRow').style.display = 'flex';
             document.getElementById('cartDiscount').innerText = discountAmount.toFixed(0);
         } else {
             document.getElementById('discountRow').style.display = 'none';
         }
-
         const container = document.getElementById('cartItems');
         container.innerHTML = '';
         cart.forEach((item, idx) => {
@@ -450,7 +457,6 @@
     function applyPromo() {
         const code = document.getElementById('promoCode').value.trim().toUpperCase();
         const msg = document.getElementById('promoMessage');
-        
         if (PROMO_CODES[code]) {
             activeDiscount = PROMO_CODES[code];
             msg.style.color = 'green';
@@ -469,7 +475,6 @@
         const p = allProducts.find(x => x.id == item.id);
         let stock = 999;
         if (p.stock !== undefined && p.stock !== "" && p.stock !== null) { stock = parseInt(p.stock); }
-        
         if (delta > 0 && !item.isWaitlist && item.qty + 1 > stock) {
             showToast("لا يوجد مخزون كافٍ!", "error");
             return;
@@ -499,29 +504,23 @@
         const notes = document.getElementById('orderNotes').value;
         if (cart.length === 0) return showToast('السلة فارغة', 'error');
         if (!name || !phone) return showToast('أكمل البيانات', 'error');
-
         const btn = document.querySelector('.checkout-btn');
         btn.innerHTML = 'جاري الإرسال...';
         btn.disabled = true;
-
         const items = cart.map(i => `▪️ ${i.name} (${i.qty}) ${i.isWaitlist?'[⏳ انتظار]':''}`).join('%0a');
         const total = document.getElementById('cartTotal').innerText;
         const discountText = activeDiscount > 0 ? `%0a🎉 خصم: ${activeDiscount*100}%` : '';
         const itemsJson = JSON.stringify(cart.map(i => ({ rowIndex: i.rowIndex, qty: i.qty })));
-
         let msg = `*طلب جديد:*%0a👤 ${name}%0a📱 ${phone}%0a------------------%0a${items}%0a------------------%0a💰 الإجمالي النهائي: ${total} ج.م${discountText}`;
         if(notes) msg += `%0a📝 ${notes}`;
         msg += `%0a📷 أرسل الصور...`;
-
         window.open(`https://wa.me/201006625152?text=${msg}`, '_blank');
-        
         const fd = new FormData();
         fd.append('date', new Date().toLocaleString());
         fd.append('name', name); fd.append('phone', phone);
         fd.append('order', cart.map(i => `${i.name} x${i.qty}`).join(' + '));
         fd.append('total', total); fd.append('notes', notes);
         fd.append('itemsJson', itemsJson);
-
         fetch(SCRIPT_URL, {method:'POST', body:fd})
         .then(() => {
             cart = []; activeDiscount = 0; updateCartUI(); toggleCart();
@@ -535,21 +534,17 @@
     }
 
     // Helper Functions
+    // الكود السحري الجديد للصور
     function processImage(url) {
         if (!url) return 'https://via.placeholder.com/150';
-        
-        // استخراج معرف الصورة
         let id = '';
         if (url.includes('drive.google.com')) {
             const match = url.match(/[-\w]{25,}/);
             if (match) id = match[0];
         }
-        
-        // الرابط السحري لحل مشكلة الصور
         if (id) {
             return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
         }
-        
         return url;
     }
     
@@ -561,7 +556,7 @@
     function applyLoginState() { if (currentUser) { document.getElementById('loginBtn').style.display = 'none'; document.getElementById('merchantBadge').style.display = 'block'; document.getElementById('merchantNameDisplay').innerText = currentUser.name; document.getElementById('customerName').value = currentUser.name; document.getElementById('customerPhone').value = currentUser.phone; document.getElementById('hero-text').innerText = `مرحباً شريك النجاح: ${currentUser.name}`; } }
     function toggleLanguage() { currentLang = currentLang === 'ar' ? 'en' : 'ar'; document.querySelector('html').dir = currentLang === 'ar' ? 'rtl' : 'ltr'; const shopProducts = allProducts.filter(p => p.category !== 'gallery'); renderProducts(shopProducts); }
 
-    // إظهار زر الصعود عند التمرير لأسفل
+    // تشغيل زر الصعود
     window.onscroll = function() {
         if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
             document.getElementById("scrollTopBtn").style.display = "block";
