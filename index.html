@@ -6,7 +6,7 @@
     <title>ستوديو زووم | Studio Zoom</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root { 
             --primary: #d4af37; --dark: #2c3e50; --accent: #e74c3c; --wait: #f39c12; --bg: #f4f6f8;
@@ -20,12 +20,15 @@
         .merchant-login-btn { border: 1px solid var(--primary); color: var(--primary); background: transparent; padding: 5px 12px; border-radius: 20px; cursor: pointer; font-size: 0.8rem; display: flex; align-items: center; gap: 5px; transition:0.3s; }
         .merchant-login-btn:hover { background: var(--primary); color: #000; }
         .merchant-badge { background: var(--primary); color: black; padding: 5px 10px; border-radius: 20px; font-weight: bold; font-size: 0.8rem; display: none; }
-
-        /* === العداد التنازلي (محدث بالشخصيات) === */
+/* === العداد التنازلي (بالخلفية الرمضانية الجديدة) === */
         #countdown-section { 
-            background: linear-gradient(45deg, #1e1e24, #2c3e50); 
+            /* 👇 استخدمنا هنا رابط "lh3" المباشر والسريع جداً */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://lh3.googleusercontent.com/d/1r7en4A-b6S-ViI_k7OMv1Xk7F0Qkvliv');
+            background-size: cover;
+            background-position: center;
+            
             color: white; 
-            padding: 30px 20px; 
+            padding: 40px 20px; 
             text-align: center; 
             border-bottom: 4px solid var(--primary); 
             display: none; 
@@ -42,11 +45,12 @@
         .ramadan-char {
             position: absolute;
             bottom: 0;
-            width: 80px; 
+            width: 150px; 
             height: auto;
             z-index: 10;
             pointer-events: none;
             filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3));
+            display: none; /* مخفية حتى يتم تحميل الرابط */
         }
         .char-right { right: 10px; animation: float 3s ease-in-out infinite; }
         .char-left { left: 10px; animation: float 4s ease-in-out infinite reverse; }
@@ -58,7 +62,7 @@
         }
 
         @media (max-width: 400px) {
-            .ramadan-char { width: 60px; opacity: 0.8; }
+            .ramadan-char { width: 120px; opacity: 0.8; }
         }
 
         /* Hero */
@@ -130,6 +134,81 @@
         
         #scrollTopBtn { display: none; position: fixed; bottom: 90px; left: 20px; background: var(--primary); color: var(--dark); border: none; width: 45px; height: 45px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 1400; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s; }
         #scrollTopBtn:hover { transform: scale(1.1); background: white; }
+/* شاشة الترحيب الرمضانية */
+        #ramadan-intro {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://img.freepik.com/free-photo/view-mosque-with-moon-lanterns_23-2150248431.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 9999; /* عشان تظهر فوق كل حاجة */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            transition: opacity 0.5s ease; /* نعومة الاختفاء */
+        }
+        
+        .intro-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid var(--primary);
+            backdrop-filter: blur(10px); /* تأثير ضبابي شيك */
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            max-width: 90%;
+        }
+
+        .intro-title { font-size: 2.5rem; color: var(--primary); margin-bottom: 10px; font-weight: bold; text-shadow: 0 2px 5px black; }
+        .intro-text { color: white; margin-bottom: 30px; font-size: 1.2rem; }
+        
+        .intro-btn {
+            display: block;
+            width: 100%;
+            padding: 15px 30px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-gold { background: var(--primary); color: #000; }
+        .btn-gold:hover { transform: scale(1.05); background: #fff; }
+
+        .btn-outline { background: transparent; border: 2px solid white; color: white; }
+        .btn-outline:hover { background: white; color: #000; }
+/* زر الموسيقى */
+        #musicBtn { 
+            display: none; /* مخفي في البداية */
+            position: fixed; 
+            bottom: 140px; /* فوق زرار الصعود */
+            left: 20px; 
+            background: #8e44ad; /* لون بنفسجي مميز */
+            color: white; 
+            border: none; 
+            width: 45px; 
+            height: 45px; 
+            border-radius: 50%; 
+            font-size: 1.2rem; 
+            cursor: pointer; 
+            z-index: 1400; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
+            transition: 0.3s; 
+        }
+        #musicBtn:hover { transform: scale(1.1); }
+        
+        /* أنيميشن النبض */
+        .music-pulse { animation: pulse-purple 2s infinite; }
+        @keyframes pulse-purple { 
+            0% {box-shadow: 0 0 0 0 rgba(142, 68, 173, 0.7);} 
+            70% {box-shadow: 0 0 0 15px rgba(142, 68, 173, 0);} 
+            100% {box-shadow: 0 0 0 0 rgba(142, 68, 173, 0);} 
+        }
     </style>
 </head>
 <body>
@@ -148,8 +227,8 @@
 </header>
 
 <div id="countdown-section">
-    <img src="https://media.tenor.com/On7j8vU9F48AAAAi/ramadan-kareem-ramadan.gif" class="ramadan-char char-right" alt="شخصية رمضان">
-    <img src="https://media.tenor.com/2s9V9YtCqQIAAAAi/fananees-ramadan.gif" class="ramadan-char char-left" alt="فوانيس رمضان">
+    <img id="charRight" class="ramadan-char char-right">
+    <img id="charLeft" class="ramadan-char char-left">
 
     <div class="timer-title" id="timer-title-display">🔥 عرض خاص ينتهي بعد:</div>
     <div class="timer-container">
@@ -268,7 +347,11 @@
 
 <script>
     // ****************************
-    // رابط السكربت الخاص بك (تم تحديثه)
+    // 👇👇👇 ضع روابط صور رمضان من جوجل درايف هنا 👇👇👇
+    const RAMADAN_IMG_1 = "https://drive.google.com/file/d/191S6Jx74thyMMl0vt4ckYBvcAb1DPMQ6/view?usp=sharing"; // استبدل هذا الرابط برابطك الأول
+    const RAMADAN_IMG_2 = "https://drive.google.com/file/d/1jgEBPdldw0WmZHFkfE5yBoXhhfZV6JY-/view?usp=drive_link"; // استبدل هذا الرابط برابطك الثاني
+    
+    // 👇👇👇 رابط السكربت الخاص بك 👇👇👇
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyR8ZkyEJhld0q7-VJB1DYz7tkAWytf24pm8C8BBT1Qq5Hwk6-jq6AgO4G4tL9kLL8/exec";
     // ****************************
 
@@ -316,6 +399,12 @@
     async function loadData() {
         document.getElementById('loader').style.display = 'block';
         try {
+            // تفعيل صور رمضان
+            const imgRight = document.getElementById('charRight');
+            const imgLeft = document.getElementById('charLeft');
+            if(RAMADAN_IMG_1) { imgRight.src = processImage(RAMADAN_IMG_1); imgRight.style.display='block'; }
+            if(RAMADAN_IMG_2) { imgLeft.src = processImage(RAMADAN_IMG_2); imgLeft.style.display='block'; }
+
             const res = await fetch(SCRIPT_URL);
             const data = await res.json();
             allProducts = data.products || []; 
@@ -341,7 +430,7 @@
             container.innerHTML = '<p style="text-align:center; width:100%; padding:20px;">لا توجد منتجات مطابقة</p>';
             return;
         }
-        list.forEach(p => {
+        list.forEach((p, index) => { // لاحظ إني ضفت index هنا
             let stockVal = 999;
             if (p.stock !== undefined && p.stock !== "" && p.stock !== null) { stockVal = parseInt(p.stock); }
             const isWaitlist = stockVal <= 0;
@@ -351,8 +440,10 @@
             let badge = '';
             if (isWaitlist) badge = `<div class="waitlist-badge">⏳ قائمة انتظار</div>`;
             else if (stockVal < 999) badge = `<div class="stock-badge">${translations[currentLang].stock}: ${stockVal}</div>`;
+            
+            // 👇 هنا التعديل: ضفنا data-aos للأنيميشن
             container.innerHTML += `
-                <div class="card">
+                <div class="card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="${index * 50}">
                     ${badge}
                     <img src="${processImage(p.image)}" class="card-img" loading="lazy" onclick="openLightbox(this.src)">
                     <div class="card-body">
@@ -567,6 +658,81 @@
     
     loadData();
 </script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 
-</body>
-</html>
+<div id="ramadan-intro">
+    <div class="intro-box">
+        <div class="intro-title">🌙 رمضان كريم</div>
+        <p class="intro-text">أهلاً بكم في ستوديو زووم<br>اختر وجهتك:</p>
+        
+        <button class="intro-btn btn-gold" onclick="enterSite('ramadan')">
+            <i class="fas fa-lantern"></i> قسم منتجات رمضان
+        </button>
+        
+        <button class="intro-btn btn-outline" onclick="enterSite('all')">
+            تصفح الموقع بالكامل
+        </button>
+    </div>
+</div>
+
+<audio id="ramadanAudio" loop>
+    <source src="https://c.top4top.io/m_36635jsjy1.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicBtn" onclick="toggleMusic()">
+    <i class="fas fa-volume-up"></i>
+</button>
+
+<script>
+    function enterSite(choice) {
+        const intro = document.getElementById('ramadan-intro');
+        const audio = document.getElementById('ramadanAudio');
+        const btn = document.getElementById('musicBtn');
+
+        // إخفاء الشاشة
+        intro.style.opacity = '0';
+        setTimeout(() => { intro.style.display = 'none'; }, 500);
+
+        // تشغيل الصوت
+        if(audio) {
+            audio.volume = 0.5; 
+            audio.play().catch(e => console.log("المتصفح يحتاج تفاعل لتشغيل الصوت"));
+        }
+        // إظهار زر الموسيقى
+        if(btn) {
+            btn.style.display = 'block';
+            btn.classList.add('music-pulse');
+        }
+
+        // فلترة المنتجات
+        if (choice === 'ramadan') {
+            const ramadanBtn = document.getElementById('tab-ramadan');
+            if(ramadanBtn) {
+                filterProducts('ramadan', ramadanBtn);
+                window.scrollTo({top: 400, behavior: 'smooth'});
+            }
+        }
+    }
+
+    function toggleMusic() {
+        const audio = document.getElementById('ramadanAudio');
+        const btn = document.getElementById('musicBtn');
+        
+        if (audio.paused) {
+            audio.play();
+            btn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            btn.classList.add('music-pulse');
+            btn.style.background = '#8e44ad';
+        } else {
+            audio.pause();
+            btn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            btn.classList.remove('music-pulse');
+            btn.style.background = '#7f8c8d';
+        }
+    }
+</script>
+
+</body> </html>
