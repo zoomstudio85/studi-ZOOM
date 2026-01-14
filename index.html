@@ -4,14 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ستوديو زووم | Studio Zoom</title>
+<meta property="og:title" content="ستوديو زووم | Studio Zoom 📸">
+    <meta property="og:description" content="رمضان كريم! 🌙 اكتشف أحدث عروض التصوير وهدايا رمضان المميزة (فوانيس - تابلوهات - سيشن). أجمل اللحظات.. تستحق زووم.">
+    <meta property="og:image" content="https://img.freepik.com/free-photo/view-mosque-with-moon-lanterns_23-2150248431.jpg">
+    <meta property="og:url" content="https://zoom-studio.com">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ar_AR">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
+        /* 1. تعريف المتغيرات (الألوان) بشكل سليم */
         :root { 
             --primary: #d4af37; --dark: #2c3e50; --accent: #e74c3c; --wait: #f39c12; --bg: #f4f6f8;
             --success: #27ae60;
         }
+
+        /* 2. كود تظبيط المقاسات (عشان الموبايل) */
+        * { box-sizing: border-box; }
+
         body { font-family: 'Cairo', sans-serif; margin: 0; padding: 0; background: var(--bg); color: var(--dark); padding-bottom: 100px; }
         
         /* Header */
@@ -20,13 +31,12 @@
         .merchant-login-btn { border: 1px solid var(--primary); color: var(--primary); background: transparent; padding: 5px 12px; border-radius: 20px; cursor: pointer; font-size: 0.8rem; display: flex; align-items: center; gap: 5px; transition:0.3s; }
         .merchant-login-btn:hover { background: var(--primary); color: #000; }
         .merchant-badge { background: var(--primary); color: black; padding: 5px 10px; border-radius: 20px; font-weight: bold; font-size: 0.8rem; display: none; }
-/* === العداد التنازلي (بالخلفية الرمضانية الجديدة) === */
+
+        /* === العداد التنازلي (بالخلفية الرمضانية الجديدة) === */
         #countdown-section { 
-            /* 👇 استخدمنا هنا رابط "lh3" المباشر والسريع جداً */
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://lh3.googleusercontent.com/d/1r7en4A-b6S-ViI_k7OMv1Xk7F0Qkvliv');
             background-size: cover;
             background-position: center;
-            
             color: white; 
             padding: 40px 20px; 
             text-align: center; 
@@ -50,7 +60,7 @@
             z-index: 10;
             pointer-events: none;
             filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3));
-            display: none; /* مخفية حتى يتم تحميل الرابط */
+            display: none; 
         }
         .char-right { right: 10px; animation: float 3s ease-in-out infinite; }
         .char-left { left: 10px; animation: float 4s ease-in-out infinite reverse; }
@@ -62,7 +72,7 @@
         }
 
         @media (max-width: 400px) {
-            .ramadan-char { width: 120px; opacity: 0.8; }
+            .ramadan-char { width: 90px; opacity: 0.8; }
         }
 
         /* Hero */
@@ -113,7 +123,25 @@
         .add-btn.waitlist-btn { background: var(--wait); color: white; }
 
         /* Sticky Bar & Modals */
-        .sticky-cart-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #1e1e24; color: white; padding: 15px 20px; display: none; justify-content: space-between; align-items: center; box-shadow: 0 -5px 20px rgba(0,0,0,0.1); z-index: 1900; border-top: 2px solid var(--primary); cursor: pointer; }
+        /* 3. تصحيح شريط السلة ليظهر بشكل سليم على الموبايل */
+        .sticky-cart-bar { 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; /* يضمن توسيط العنصر */
+            width: auto; 
+            background: #1e1e24; 
+            color: white; 
+            padding: 15px 20px; 
+            display: none; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1); 
+            z-index: 1900; 
+            border-top: 2px solid var(--primary); 
+            cursor: pointer; 
+        }
+
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; backdrop-filter: blur(5px); }
         .modal-content { background: white; width: 95%; max-width: 450px; margin: 20px auto; padding: 20px; border-radius: 15px; max-height: 90vh; overflow-y: auto; }
         
@@ -134,20 +162,21 @@
         
         #scrollTopBtn { display: none; position: fixed; bottom: 90px; left: 20px; background: var(--primary); color: var(--dark); border: none; width: 45px; height: 45px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 1400; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s; }
         #scrollTopBtn:hover { transform: scale(1.1); background: white; }
-/* شاشة الترحيب الرمضانية */
+
+        /* شاشة الترحيب الرمضانية */
         #ramadan-intro {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://img.freepik.com/free-photo/view-mosque-with-moon-lanterns_23-2150248431.jpg');
             background-size: cover;
             background-position: center;
-            z-index: 9999; /* عشان تظهر فوق كل حاجة */
+            z-index: 9999;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             text-align: center;
-            transition: opacity 0.5s ease; /* نعومة الاختفاء */
+            transition: opacity 0.5s ease;
         }
         
         .intro-box {
@@ -155,7 +184,7 @@
             padding: 40px;
             border-radius: 20px;
             border: 2px solid var(--primary);
-            backdrop-filter: blur(10px); /* تأثير ضبابي شيك */
+            backdrop-filter: blur(10px);
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
             max-width: 90%;
         }
@@ -182,13 +211,14 @@
 
         .btn-outline { background: transparent; border: 2px solid white; color: white; }
         .btn-outline:hover { background: white; color: #000; }
-/* زر الموسيقى */
+
+        /* زر الموسيقى */
         #musicBtn { 
-            display: none; /* مخفي في البداية */
+            display: none; 
             position: fixed; 
-            bottom: 140px; /* فوق زرار الصعود */
+            bottom: 140px; 
             left: 20px; 
-            background: #8e44ad; /* لون بنفسجي مميز */
+            background: #8e44ad; 
             color: white; 
             border: none; 
             width: 45px; 
@@ -208,6 +238,29 @@
             0% {box-shadow: 0 0 0 0 rgba(142, 68, 173, 0.7);} 
             70% {box-shadow: 0 0 0 15px rgba(142, 68, 173, 0);} 
             100% {box-shadow: 0 0 0 0 rgba(142, 68, 173, 0);} 
+        }
+
+        /* تساقط الفوانيس والنجوم */
+        .fall-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            overflow: hidden;
+        }
+        .fall-item {
+            position: absolute;
+            top: -50px;
+            color: var(--primary);
+            text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
@@ -276,7 +329,7 @@
     <div class="modal-content">
         <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; padding-bottom:15px;">
             <h3 style="margin:0">🛒 السلة</h3>
-            <button onclick="toggleCart()" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">&times;</button>
+            <button onclick="toggleCart()" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">×</button>
         </div>
         <div id="cartItems" style="margin-top:15px;"></div>
         
@@ -315,7 +368,7 @@
 </div>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <span class="lightbox-close">&times;</span>
+    <span class="lightbox-close">×</span>
     <img id="lightboxImg" src="">
 </div>
 
@@ -341,15 +394,15 @@
     </div>
     
     <div style="font-size:0.8rem; color:#777;">
-        جميع الحقوق محفوظة &copy; 2026 Studio Zoom
+        جميع الحقوق محفوظة © 2026 Studio Zoom
     </div>
 </footer>
 
 <script>
     // ****************************
     // 👇👇👇 ضع روابط صور رمضان من جوجل درايف هنا 👇👇👇
-    const RAMADAN_IMG_1 = "https://drive.google.com/file/d/191S6Jx74thyMMl0vt4ckYBvcAb1DPMQ6/view?usp=sharing"; // استبدل هذا الرابط برابطك الأول
-    const RAMADAN_IMG_2 = "https://drive.google.com/file/d/1jgEBPdldw0WmZHFkfE5yBoXhhfZV6JY-/view?usp=drive_link"; // استبدل هذا الرابط برابطك الثاني
+    const RAMADAN_IMG_1 = "https://drive.google.com/file/d/191S6Jx74thyMMl0vt4ckYBvcAb1DPMQ6/view?usp=sharing"; 
+    const RAMADAN_IMG_2 = "https://drive.google.com/file/d/1jgEBPdldw0WmZHFkfE5yBoXhhfZV6JY-/view?usp=drive_link"; 
     
     // 👇👇👇 رابط السكربت الخاص بك 👇👇👇
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyR8ZkyEJhld0q7-VJB1DYz7tkAWytf24pm8C8BBT1Qq5Hwk6-jq6AgO4G4tL9kLL8/exec";
@@ -430,7 +483,7 @@
             container.innerHTML = '<p style="text-align:center; width:100%; padding:20px;">لا توجد منتجات مطابقة</p>';
             return;
         }
-        list.forEach((p, index) => { // لاحظ إني ضفت index هنا
+        list.forEach((p, index) => {
             let stockVal = 999;
             if (p.stock !== undefined && p.stock !== "" && p.stock !== null) { stockVal = parseInt(p.stock); }
             const isWaitlist = stockVal <= 0;
@@ -441,7 +494,6 @@
             if (isWaitlist) badge = `<div class="waitlist-badge">⏳ قائمة انتظار</div>`;
             else if (stockVal < 999) badge = `<div class="stock-badge">${translations[currentLang].stock}: ${stockVal}</div>`;
             
-            // 👇 هنا التعديل: ضفنا data-aos للأنيميشن
             container.innerHTML += `
                 <div class="card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="${index * 50}">
                     ${badge}
@@ -625,7 +677,6 @@
     }
 
     // Helper Functions
-    // الكود السحري الجديد للصور
     function processImage(url) {
         if (!url) return 'https://via.placeholder.com/150';
         let id = '';
@@ -647,7 +698,6 @@
     function applyLoginState() { if (currentUser) { document.getElementById('loginBtn').style.display = 'none'; document.getElementById('merchantBadge').style.display = 'block'; document.getElementById('merchantNameDisplay').innerText = currentUser.name; document.getElementById('customerName').value = currentUser.name; document.getElementById('customerPhone').value = currentUser.phone; document.getElementById('hero-text').innerText = `مرحباً شريك النجاح: ${currentUser.name}`; } }
     function toggleLanguage() { currentLang = currentLang === 'ar' ? 'en' : 'ar'; document.querySelector('html').dir = currentLang === 'ar' ? 'rtl' : 'ltr'; const shopProducts = allProducts.filter(p => p.category !== 'gallery'); renderProducts(shopProducts); }
 
-    // تشغيل زر الصعود
     window.onscroll = function() {
         if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
             document.getElementById("scrollTopBtn").style.display = "block";
@@ -658,6 +708,7 @@
     
     loadData();
 </script>
+
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init();
@@ -733,6 +784,34 @@
             btn.style.background = '#7f8c8d';
         }
     }
+
+    // دالة إنشاء تأثير التساقط الرمضاني
+    function createFallingEffect() {
+        const container = document.createElement('div');
+        container.className = 'fall-container';
+        document.body.appendChild(container);
+
+        const icons = ['fa-star', 'fa-moon', 'fa-lantern', 'fa-mosque']; 
+        const count = 25; 
+
+        for (let i = 0; i < count; i++) {
+            const item = document.createElement('i');
+            const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+            item.className = `fas ${randomIcon} fall-item`;
+            
+            item.style.left = Math.random() * 100 + 'vw'; 
+            item.style.fontSize = (Math.random() * 15 + 10) + 'px'; 
+            item.style.animationDuration = (Math.random() * 10 + 10) + 's'; 
+            item.style.animationDelay = (Math.random() * 10) + 's'; 
+            item.style.opacity = Math.random() * 0.5 + 0.3; 
+            
+            container.appendChild(item);
+        }
+    }
+
+    // تشغيل التأثير فوراً
+    createFallingEffect();
 </script>
 
-</body> </html>
+</body>
+</html>
